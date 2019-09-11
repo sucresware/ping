@@ -23,13 +23,28 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-gray-100"></div>
+            <div class="relative bg-white overflow-hidden" style="height: 60px;">
+                <div class="absolute" style="right: -5px;">
+                    <svg class="sparkline" width="640" height="60" stroke-width="3" ref="sparkline"></svg>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+    import sparkline from '@fnando/sparkline';
+
     export default {
         props: ['monitor'],
+        mounted(){
+            this.drawSparkline();
+        },
+        methods: {
+            drawSparkline(){
+                let values = this.monitor.response_times.map(ping => ping.value);
+                sparkline(this.$refs.sparkline, values);
+            }
+        }
     }
 </script>
