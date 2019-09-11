@@ -1888,11 +1888,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['apiKey'],
+  props: ['monitor']
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UptimeCards.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UptimeCards.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      monitor: {}
+      apiKeys: ['m783344445-2d46813eb1c528f73623ffd8', 'm782599854-61c7a7827d02435fc3e95c53', 'm783365387-eab72a62b3a86300da29ee20', 'm783365392-2ee693da6adc136239c78e2e', 'm783382164-8506d4852ddd4bf6b4ebe674', 'm783437103-270fa1f6d5f707fe29078076', // RisiBank
+      'm783437095-569f707ce1f590a31dfe78fd' // Risidex
+      ],
+      monitors: [],
+      uptime_ratio: '30',
+      response_times_start_date: moment().subtract(7, "days").unix(),
+      response_times_end_date: moment().unix()
     };
   },
   mounted: function mounted() {
@@ -1907,15 +1935,21 @@ __webpack_require__.r(__webpack_exports__);
     refresh: function refresh() {
       var _this2 = this;
 
-      axios.post('https://api.uptimerobot.com/v2/getMonitors', {
-        api_key: this.apiKey,
-        custom_uptime_ratios: '7',
-        response_times: '1',
-        response_times_start_date: moment().subtract(7, "days").unix(),
-        response_times_end_date: moment().unix(),
-        format: 'json'
-      }).then(function (response) {
-        _this2.monitor = response.data.monitors[0];
+      this.apiKeys.forEach(function (apiKey) {
+        axios.post('https://api.uptimerobot.com/v2/getMonitors', {
+          api_key: apiKey,
+          custom_uptime_ratios: _this2.uptime_ratio,
+          response_times: '1',
+          response_times_start_date: _this2.response_times_start_date,
+          response_times_end_date: _this2.response_times_end_date,
+          format: 'json'
+        }).then(function (response) {
+          var index = _this2.monitors.findIndex(function (monitor) {
+            return monitor.id == response.data.monitors[0].id;
+          });
+
+          if (index == -1) _this2.monitors.push(response.data.monitors[0]);else _this2.monitors[index] = response.data.monitors[0];
+        });
       });
     }
   }
@@ -20033,13 +20067,27 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3" }, [
     _c("div", { staticClass: "rounded shadow-md" }, [
-      _c("div", {
-        staticClass: "h-1 bg-gray-500",
-        class: {
-          "bg-green-500": _vm.monitor.status == 2,
-          "bg-red-500": _vm.monitor.status == 8 || _vm.monitor.status == 9
-        }
-      }),
+      _c(
+        "div",
+        {
+          staticClass: "h-1 bg-gray-500",
+          class: {
+            "bg-red-500": _vm.monitor.status == 8 || _vm.monitor.status == 9,
+            "bg-green-500": _vm.monitor.status == 2
+          }
+        },
+        [
+          _vm.monitor.status == 2
+            ? _c("div", {
+                staticClass: "w-full h-1",
+                class: {
+                  "bg-orange-500":
+                    Math.round(_vm.monitor.custom_uptime_ratio) != 100
+                }
+              })
+            : _vm._e()
+        ]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "p-4 bg-white" }, [
         _c("div", { staticClass: "font-bold" }, [
@@ -20056,7 +20104,11 @@ var render = function() {
             _vm._v(" "),
             _vm.monitor.custom_uptime_ratio
               ? _c("div", { staticClass: "font-bold text-xl" }, [
-                  _vm._v(_vm._s(Math.round(_vm.monitor.custom_uptime_ratio))),
+                  _vm._v(
+                    _vm._s(
+                      Math.round(_vm.monitor.custom_uptime_ratio * 100) / 100
+                    )
+                  ),
                   _c("sub", { staticClass: "text-sm" }, [_vm._v("%")])
                 ])
               : _c("div", { staticClass: "font-bold text-xl" }, [_vm._v(" ")])
@@ -20069,7 +20121,11 @@ var render = function() {
             _vm._v(" "),
             _vm.monitor.average_response_time
               ? _c("div", { staticClass: "font-bold text-xl" }, [
-                  _vm._v(_vm._s(Math.round(_vm.monitor.average_response_time))),
+                  _vm._v(
+                    _vm._s(
+                      Math.round(_vm.monitor.average_response_time * 100) / 100
+                    )
+                  ),
                   _c("sub", { staticClass: "text-sm" }, [_vm._v("ms")])
                 ])
               : _c("div", { staticClass: "font-bold text-xl" }, [_vm._v(" ")])
@@ -20080,6 +20136,37 @@ var render = function() {
       _c("div", { staticClass: "bg-gray-100" })
     ])
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UptimeCards.vue?vue&type=template&id=3862e1c0&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UptimeCards.vue?vue&type=template&id=3862e1c0& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "flex flex-wrap -m-3 " },
+    _vm._l(_vm.monitors, function(monitor) {
+      return _c("uptime-card", { key: monitor.id, attrs: { monitor: monitor } })
+    }),
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -32243,7 +32330,8 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./components/UptimeCard.vue": "./resources/js/components/UptimeCard.vue"
+	"./components/UptimeCard.vue": "./resources/js/components/UptimeCard.vue",
+	"./components/UptimeCards.vue": "./resources/js/components/UptimeCards.vue"
 };
 
 
@@ -32375,6 +32463,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UptimeCard_vue_vue_type_template_id_333fb7c3___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UptimeCard_vue_vue_type_template_id_333fb7c3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/UptimeCards.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/UptimeCards.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UptimeCards_vue_vue_type_template_id_3862e1c0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UptimeCards.vue?vue&type=template&id=3862e1c0& */ "./resources/js/components/UptimeCards.vue?vue&type=template&id=3862e1c0&");
+/* harmony import */ var _UptimeCards_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UptimeCards.vue?vue&type=script&lang=js& */ "./resources/js/components/UptimeCards.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UptimeCards_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UptimeCards_vue_vue_type_template_id_3862e1c0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UptimeCards_vue_vue_type_template_id_3862e1c0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/UptimeCards.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/UptimeCards.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/UptimeCards.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UptimeCards_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./UptimeCards.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UptimeCards.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UptimeCards_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/UptimeCards.vue?vue&type=template&id=3862e1c0&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/UptimeCards.vue?vue&type=template&id=3862e1c0& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UptimeCards_vue_vue_type_template_id_3862e1c0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./UptimeCards.vue?vue&type=template&id=3862e1c0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UptimeCards.vue?vue&type=template&id=3862e1c0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UptimeCards_vue_vue_type_template_id_3862e1c0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UptimeCards_vue_vue_type_template_id_3862e1c0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
