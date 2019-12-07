@@ -9,13 +9,16 @@
         data()  {
             return {
                 apiKeys: [
-                    'm783344445-2d46813eb1c528f73623ffd8',
-                    'm782599854-61c7a7827d02435fc3e95c53',
-                    'm783365387-eab72a62b3a86300da29ee20',
-                    'm783365392-2ee693da6adc136239c78e2e',
-                    'm783382164-8506d4852ddd4bf6b4ebe674',
+                    'm783344445-2d46813eb1c528f73623ffd8', // 2Sucres
+                    'm782599854-61c7a7827d02435fc3e95c53', // 4sucres
+                    'm783700279-f3f3548593949595748ec321', // Onche
+                    'm783365392-2ee693da6adc136239c78e2e', // AveNoel
+                    'm783382164-8506d4852ddd4bf6b4ebe674', // VocaBank
                     'm783437103-270fa1f6d5f707fe29078076', // RisiBank
                     'm783437095-569f707ce1f590a31dfe78fd', // Risidex
+                    'm783953698-60d1ae9028ad2f14c6952885', // AveShack
+                    'm783953671-73817b9aeedf87570a6762e9', // 4shack
+                    'm783953673-a32f8069bf350316abef1567', // Risishack
                 ],
                 monitors: [],
                 uptime_ratio: '30',
