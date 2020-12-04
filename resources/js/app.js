@@ -1,6 +1,7 @@
+import TypeIt from "typeit";
+
 window.axios    = require('axios');
 window.moment   = require('moment');
-window.TypeIt   = require('typeit');
 window.Vue      = require('vue');
 
 Object.defineProperty(Vue.prototype, 'axios',  { value: axios  });
@@ -26,7 +27,7 @@ new TypeIt('#typeit', {loop: true})
     .pause(500)
     .delete(4)
     .type('4sucres.org')
-    .pause(1500)
+    .pause(2000)
     .delete()
     .type('lebunker.net')
     .pause(2000)
@@ -37,13 +38,16 @@ new TypeIt('#typeit', {loop: true})
     .pause(300)
     .options({speed: 100})
     .delete(3)
+    .type('fr')
+    .pause(600)
+    .delete(2)
     .type('party')
+    .pause(600)
+    .delete()
+    .type('onche.onche.party')
     .pause(1500)
     .delete()
     .type('avenoel.org')
-    .pause(750)
-    .delete()
-    .type('vocabank.org')
-    .pause(2000)
+    .pause(1500)
     .delete()
     .go();

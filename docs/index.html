@@ -4,32 +4,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" href="favicon.svg">
   <link rel="stylesheet" href="build/main.css">
   <title>Ping - 4sucres.org</title>
 </head>
 
-<body class="antialiased font-sans bg-gray-200 bg-gradient text-gray-900">
-  <div class="flex min-h-screen items-center py-10">
+<body class="font-sans antialiased text-gray-700 bg-gray-100">
+  <div class="flex items-center min-h-screen py-10">
     <main class="container" id="app">
-      <div class="bg-gray-900 shadow-lg rounded font-mono px-4 py-3">
+      <div class="px-4 py-3 font-mono bg-gray-900 rounded-lg shadow-lg">
         <span class="text-gray-600">ping</span>
         <span class="text-gray-200" id="typeit"></span>
       </div>
       <uptime-cards class="my-10"></uptime-cards>
-      <footer class="text-center md:text-left mt-16 md:ml-12 md:mt-0 relative">
-        <img src="images/4sucres.png" alt="Logo 4sucres" class="hidden md:block absolute"
+      <footer class="relative mt-16 text-center md:text-left md:ml-12 md:mt-0">
+        <img src="images/4sucres.png" alt="Logo 4sucres" class="absolute hidden md:block"
           style="left: -3rem; z-index: -1;">
-        <img src="images/4sucres.png" alt="Logo 4sucres" class="md:hidden absolute mx-auto"
+        <img src="images/4sucres.png" alt="Logo 4sucres" class="absolute mx-auto md:hidden"
           style="left: 0; right: 0; top: -2.5rem; z-index: -1;">
 
-        <div class="text-gray-500 text-sm">
-          © SucresWare - 2019<br>
-          Données indépendantes recueillies par <a href="https://uptimerobot.com" target="_blank" class="text-blue-500">Uptime Robot</a><br>
-          Service fourni par <a href="https://4sucres.org" target="_blank" class="text-blue-500">4sucres.org</a>
+        <div class="text-sm text-gray-500">
+          © SucresWare - 2019-2021<br>
+          Données indépendantes recueillies par <a href="https://uptimerobot.com" target="_blank" class="text-gray-800 hover:underline">Uptime Robot</a><br>
+          Service fourni par <a href="https://4sucres.org" target="_blank" class="text-gray-800 hover:underline">4sucres.org</a>
           &mdash;
-          Hébergé sur <a href="https://github.com/sucresware/ping" target="_blank" class="text-blue-500">GitHub</a><br>
+          Hébergé sur <a href="https://github.com/sucresware/ping" target="_blank" class="text-gray-800 hover:underline">GitHub</a><br>
         </div>
       </footer>
     </main>

@@ -6,6 +6,5 @@
 @tailwind utilities;
 
 .sparkline {
-    stroke: theme('colors.gray.300');
     fill: theme('colors.gray.100');
 }

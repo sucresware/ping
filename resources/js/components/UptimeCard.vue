@@ -1,32 +1,53 @@
 <template>
-    <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3">
-        <div class="rounded shadow-md">
-            <div class="h-1 bg-gray-500" :class="{
-                'bg-red-500': (monitor.status == 8 || monitor.status == 9),
-                'bg-green-500': (monitor.status == 2),
-            }">
-            <div v-if="monitor.status == 2" class="w-full h-1" :class="{ 'bg-orange-500': (Math.round(monitor.custom_uptime_ratio) != 100), }"></div>
+    <div class="w-full bg-white rounded-lg shadow-lg">
+        <div class="p-4">
+            <div class="font-bold">
+                <span
+                    :class="{
+                        'text-red-500': (monitor.status == 8 || monitor.status == 9),
+                        'text-yellow-500': (monitor.status == 2 && monitor.custom_uptime_ratio < 100),
+                        'text-green-500': (monitor.status == 2 && monitor.custom_uptime_ratio == 100),
+                    }"
+                >
+                    &bullet;
+                </span>
+                {{ monitor.friendly_name || '&nbsp;' }}
             </div>
-            <div class="p-4 bg-white">
-                <div class="font-bold">{{ monitor.friendly_name || '&nbsp;' }}</div>
-                <div class="text-gray-500 text-sm">{{ monitor.url || '&nbsp;' }}</div>
-                <div class="my-2 flex">
-                    <div class="w-1/3">
-                        <div class="uppercase text-sm">Uptime</div>
-                        <div class="font-bold text-xl" v-if="monitor.custom_uptime_ratio">{{ Math.round(monitor.custom_uptime_ratio * 100) / 100 }}<sub class="text-sm">%</sub></div>
-                        <div class="font-bold text-xl" v-else>&nbsp;</div>
-                    </div>
-                    <div class="w-2/3 text-right">
-                        <div class="uppercase text-sm">Av Response</div>
-                        <div class="font-bold text-xl" v-if="monitor.average_response_time">{{ Math.round(monitor.average_response_time * 100) / 100 }}<sub class="text-sm">ms</sub></div>
-                        <div class="font-bold text-xl" v-else>&nbsp;</div>
-                    </div>
+            <div class="text-sm text-gray-400">
+                <a :href="monitor.url || '&nbsp;'" class="hover:underline" target="_blank">
+                    {{ monitor.url || '&nbsp;' }}
+                </a>
+            </div>
+            <div class="flex my-2">
+                <div class="w-1/3">
+                    <div class="text-sm text-gray-400 uppercase">Uptime</div>
+                    <div class="text-xl font-bold" v-if="monitor.custom_uptime_ratio">{{ Math.round(monitor.custom_uptime_ratio * 100) / 100 }}<sup class="text-sm">%</sup></div>
+                    <div class="text-xl font-bold" v-else>&nbsp;</div>
+                </div>
+                <div class="w-2/3 text-right">
+                    <div class="text-sm text-gray-400 uppercase">Av. Response</div>
+                    <div class="text-xl font-bold" v-if="monitor.average_response_time">{{ Math.round(monitor.average_response_time * 100) / 100 }}<sup class="text-sm">ms</sup></div>
+                    <div class="text-xl font-bold" v-else>&nbsp;</div>
                 </div>
             </div>
-            <div class="relative bg-white overflow-hidden" style="height: 60px;">
-                <div class="absolute" style="right: -5px;">
-                    <svg class="sparkline" width="640" height="60" stroke-width="3" ref="sparkline"></svg>
-                </div>
+        </div>
+        <div class="relative overflow-hidden rounded-b-lg" style="height: 40px;">
+            <div class="absolute" style="right: -5px;">
+                <svg class="sparkline" width="640" height="40" stroke-width="0" ref="sparkline"></svg>
+            </div>
+        </div>
+        <div class="p-4 bg-gray-100 rounded-b-lg">
+            <div class="flex space-x-1">
+                <div
+                    class="flex-grow h-6"
+                    :class="{
+                        'bg-red-500': ping == '0.000',
+                        'bg-orange-500': (ping != '100.000' && ping != '0.000'),
+                        'bg-green-500': ping == '100.000',
+                    }"
+                    v-for="(ping, i) in pings"
+                    v-bind:key="i"
+                ></div>
             </div>
         </div>
     </div>
@@ -37,13 +58,23 @@
 
     export default {
         props: ['monitor'],
-        mounted(){
-            this.drawSparkline();
+
+        data() {
+            return {
+                pings: [],
+            }
         },
+
+        mounted() {
+            this.drawSparkline()
+
+            this.pings = this.monitor.custom_uptime_ranges.split('-')
+        },
+
         methods: {
-            drawSparkline(){
-                let values = this.monitor.response_times.map(ping => ping.value);
-                sparkline(this.$refs.sparkline, values);
+            drawSparkline() {
+                let values = this.monitor.response_times.map(ping => ping.value)
+                sparkline(this.$refs.sparkline, values)
             }
         }
     }
