@@ -1974,9 +1974,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['monitor'],
@@ -24159,122 +24156,119 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-full bg-white rounded-lg shadow-lg" }, [
-    _c("div", { staticClass: "p-4" }, [
-      _c("div", { staticClass: "font-bold" }, [
-        _c(
-          "span",
-          {
-            class: {
-              "text-red-500":
-                _vm.monitor.status == 8 || _vm.monitor.status == 9,
-              "text-yellow-500":
-                _vm.monitor.status == 2 &&
-                _vm.monitor.custom_uptime_ratio < 100,
-              "text-green-500":
-                _vm.monitor.status == 2 &&
-                _vm.monitor.custom_uptime_ratio == 100
-            }
-          },
-          [_vm._v("\n                •\n            ")]
-        ),
-        _vm._v(
-          "\n            " +
-            _vm._s(_vm.monitor.friendly_name || " ") +
-            "\n        "
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-sm text-gray-400" }, [
-        _c(
-          "a",
-          {
-            staticClass: "hover:underline",
-            attrs: { href: _vm.monitor.url || "&nbsp;", target: "_blank" }
-          },
-          [
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.monitor.url || " ") +
-                "\n            "
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex my-2" }, [
-        _c("div", { staticClass: "w-1/3" }, [
-          _c("div", { staticClass: "text-sm text-gray-400 uppercase" }, [
-            _vm._v("Uptime")
+  return _c(
+    "div",
+    { staticClass: "w-full bg-white rounded-lg shadow-lg dark:bg-gray-800" },
+    [
+      _c("div", { staticClass: "p-4" }, [
+        _c("div", { staticClass: "flex justify-between mb-2" }, [
+          _c("div", [
+            _c("div", { staticClass: "font-bold" }, [
+              _c(
+                "span",
+                {
+                  class: {
+                    "text-red-500":
+                      _vm.monitor.status == 8 || _vm.monitor.status == 9,
+                    "text-yellow-500":
+                      _vm.monitor.status == 2 &&
+                      _vm.monitor.custom_uptime_ratio < 100,
+                    "text-green-500":
+                      _vm.monitor.status == 2 &&
+                      _vm.monitor.custom_uptime_ratio == 100
+                  }
+                },
+                [_vm._v("\n                        •\n                    ")]
+              ),
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.monitor.friendly_name || " ") +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-sm text-gray-400" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "hover:underline",
+                  attrs: { href: _vm.monitor.url || "&nbsp;", target: "_blank" }
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.monitor.url || " ") +
+                      "\n                    "
+                  )
+                ]
+              )
+            ])
           ]),
           _vm._v(" "),
-          _vm.monitor.custom_uptime_ratio
-            ? _c("div", { staticClass: "text-xl font-bold" }, [
-                _vm._v(
-                  _vm._s(
-                    Math.round(_vm.monitor.custom_uptime_ratio * 100) / 100
-                  )
-                ),
-                _c("sup", { staticClass: "text-sm" }, [_vm._v("%")])
-              ])
-            : _c("div", { staticClass: "text-xl font-bold" }, [_vm._v(" ")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-2/3 text-right" }, [
-          _c("div", { staticClass: "text-sm text-gray-400 uppercase" }, [
-            _vm._v("Av. Response")
-          ]),
-          _vm._v(" "),
-          _vm.monitor.average_response_time
-            ? _c("div", { staticClass: "text-xl font-bold" }, [
-                _vm._v(
-                  _vm._s(
-                    Math.round(_vm.monitor.average_response_time * 100) / 100
-                  )
-                ),
-                _c("sup", { staticClass: "text-sm" }, [_vm._v("ms")])
-              ])
-            : _c("div", { staticClass: "text-xl font-bold" }, [_vm._v(" ")])
+          _c("div", { staticClass: "text-right" }, [
+            _c("div", { staticClass: "text-sm text-gray-400 uppercase" }, [
+              _vm._v("Uptime")
+            ]),
+            _vm._v(" "),
+            _vm.monitor.custom_uptime_ratio
+              ? _c("div", { staticClass: "text-xl font-bold" }, [
+                  _vm._v(
+                    _vm._s(
+                      Math.round(_vm.monitor.custom_uptime_ratio * 100) / 100
+                    )
+                  ),
+                  _c("sup", { staticClass: "text-sm" }, [_vm._v("%")])
+                ])
+              : _c("div", { staticClass: "text-xl font-bold" }, [_vm._v(" ")])
+          ])
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "relative overflow-hidden rounded-b-lg",
-        staticStyle: { height: "40px" }
-      },
-      [
-        _c("div", { staticClass: "absolute", staticStyle: { right: "-5px" } }, [
-          _c("svg", {
-            ref: "sparkline",
-            staticClass: "sparkline",
-            attrs: { width: "640", height: "40", "stroke-width": "0" }
-          })
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "p-4 bg-gray-100 rounded-b-lg" }, [
+      ]),
+      _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex space-x-1" },
-        _vm._l(_vm.pings, function(ping, i) {
-          return _c("div", {
-            key: i,
-            staticClass: "flex-grow h-6",
-            class: {
-              "bg-red-500": ping == "0.000",
-              "bg-orange-500": ping != "100.000" && ping != "0.000",
-              "bg-green-500": ping == "100.000"
-            }
-          })
-        }),
-        0
+        {
+          staticClass: "relative overflow-hidden rounded-b-lg",
+          staticStyle: { height: "40px" }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "absolute", staticStyle: { right: "-5px" } },
+            [
+              _c("svg", {
+                ref: "sparkline",
+                staticClass: "sparkline",
+                attrs: { width: "640", height: "40", "stroke-width": "0" }
+              })
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "p-4 bg-gray-100 rounded-b-lg dark:bg-gray-900" },
+        [
+          _c(
+            "div",
+            { staticClass: "flex space-x-1" },
+            _vm._l(_vm.pings, function(ping, i) {
+              return _c("div", {
+                key: i,
+                staticClass: "flex-grow h-6",
+                class: {
+                  "bg-red-500": ping == "0.000",
+                  "bg-orange-500": ping != "100.000" && ping != "0.000",
+                  "bg-green-500": ping == "100.000"
+                }
+              })
+            }),
+            0
+          )
+        ]
       )
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -24303,7 +24297,7 @@ var render = function() {
       "div",
       {
         staticClass:
-          "grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+          "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
       },
       _vm._l(_vm.monitors, function(monitor) {
         return _c("uptime-card", {
@@ -36562,8 +36556,35 @@ var app = new Vue({
   el: '#app'
 });
 /**
+    Theme
+ */
+
+function updateTheme() {
+  if (localStorage.theme === 'dark' || !('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.querySelector('html').classList.add('dark');
+    document.getElementById('themeButton').innerHTML = '<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>';
+  } else {
+    document.querySelector('html').classList.remove('dark');
+    document.getElementById('themeButton').innerHTML = '<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"/></svg>';
+  }
+}
+
+(function () {
+  updateTheme();
+  document.getElementById('themeButton').addEventListener('click', function () {
+    if (localStorage.theme === 'dark') {
+      localStorage.setItem('theme', 'light');
+      updateTheme();
+    } else {
+      localStorage.setItem('theme', 'dark');
+      updateTheme();
+    }
+  });
+})();
+/**
     TypeIt
  */
+
 
 new typeit__WEBPACK_IMPORTED_MODULE_0__["default"]('#typeit', {
   loop: true
@@ -36720,8 +36741,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\laragon\www\ping-4sucres\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\laragon\www\ping-4sucres\resources\css\main.css */"./resources/css/main.css");
+__webpack_require__(/*! D:\laragon\www\4sucres-ping\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\laragon\www\4sucres-ping\resources\css\main.css */"./resources/css/main.css");
 
 
 /***/ })

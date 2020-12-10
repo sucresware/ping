@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
             <uptime-card v-for="monitor in monitors" :key="monitor.id" :monitor="monitor"></uptime-card>
         </div>
     </div>
