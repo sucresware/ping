@@ -1,5 +1,13 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
+  darkMode: 'class',
   theme: {
+     extend: {
+      colors: {
+        gray: colors.gray,
+      }
+    },
     container: {
       padding: '2rem',
       center: true,

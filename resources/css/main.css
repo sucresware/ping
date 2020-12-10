@@ -8,3 +8,7 @@
 .sparkline {
     fill: theme('colors.gray.100');
 }
+
+html.dark .sparkline {
+    fill: theme('colors.gray.900');
+}
