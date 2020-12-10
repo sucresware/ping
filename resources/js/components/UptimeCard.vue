@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full bg-white rounded-lg shadow-lg">
+    <div class="w-full bg-white rounded-lg shadow-lg dark:bg-gray-800">
         <div class="p-4">
             <div class="font-bold">
                 <span
@@ -36,7 +36,7 @@
                 <svg class="sparkline" width="640" height="40" stroke-width="0" ref="sparkline"></svg>
             </div>
         </div>
-        <div class="p-4 bg-gray-100 rounded-b-lg">
+        <div class="p-4 bg-gray-100 rounded-b-lg dark:bg-gray-900">
             <div class="flex space-x-1">
                 <div
                     class="flex-grow h-6"
