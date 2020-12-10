@@ -24227,7 +24227,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "relative overflow-hidden rounded-b-lg",
+          staticClass: "relative overflow-hidden",
           staticStyle: { height: "40px" }
         },
         [

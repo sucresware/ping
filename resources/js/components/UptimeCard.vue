@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="relative overflow-hidden rounded-b-lg" style="height: 40px;">
+        <div class="relative overflow-hidden" style="height: 40px;">
             <div class="absolute" style="right: -5px;">
                 <svg class="sparkline" width="640" height="40" stroke-width="0" ref="sparkline"></svg>
             </div>
